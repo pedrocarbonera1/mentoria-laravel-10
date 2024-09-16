@@ -8,11 +8,23 @@ use Illuminate\Http\Request;
 class ProdutosController extends Controller
 {
     
-    public function index()
+    public function __construct(Produtos $produto)
     {
-        $findProdutos = Produtos::all();
+        $this->produto = $produto;
+    }
+
+    public function index(Request $request)
+    {
+        $pesquisar = $request->pesquisar  ?? '';
+        $findProdutos = $this->produto->getProdutosPesquisarIndex($pesquisar);
+
        
         return view('pages.paginacao', compact('findProdutos'));
+    }
+
+    public function delelte(Request $request)
+    {
+        
     }
 
     /**

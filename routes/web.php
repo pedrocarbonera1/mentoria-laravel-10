@@ -22,5 +22,6 @@ Route::get('/', function () {
 // O prefi serve para agrupar rotas referenta a um grupo tipo todas funçoes voltadas a produtos vao ficar dentro de prefix para não ficar um homeficação muito grande 
 Route::prefix('produtos')->group(function (){
     Route::get('/',[ProdutosController::class, 'index'])->name('produto.index');
+    Route::delete('/delete',[ProdutosController::class, 'index'])->name('produto.delete');
 
 });
