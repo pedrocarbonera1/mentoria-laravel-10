@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produtos;
 use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        return 'produtos';
+        $findProdutos = Produtos::all();
+       
+        return view('pages.paginacao', compact('findProdutos'));
     }
 
     /**
