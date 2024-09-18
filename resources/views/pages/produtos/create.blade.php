@@ -14,20 +14,20 @@
             @endif
         </div>
         <div class="mb-3">
-            <label class="form-label">Valor</label>
-            <input   class="form-control @error('valor') is-invalid @enderror" name="valor">
-            @if ($errors->has('valor'))
-                <div class="invalid-feedback"> {{ $errors->first('valor') }}</div>
-            @endif
-        </div>
-        <div class="mb-3">
             <label class="form-label">Descrição</label>
             <input   class="form-control @error('valor') is-invalid @enderror" name="descricao">
             @if ($errors->has('descricao'))
                 <div class="invalid-feedback"> {{ $errors->first('descricao') }}</div>
             @endif
         </div>
-
+        <div class="mb-3">
+            <label class="form-label">Valor</label>
+            <input id='mascara_valor'  class="form-control @error('valor') is-invalid @enderror" name="valor">
+            @if ($errors->has('valor'))
+                <div class="invalid-feedback"> {{ $errors->first('valor') }}</div>
+            @endif
+        </div>
+        
         <button type="submit" class="btn btn-success">GRAVAR</button>
     </form>
 @endsection
