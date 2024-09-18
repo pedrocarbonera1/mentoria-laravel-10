@@ -14,6 +14,7 @@ class ProdutosSeeder extends Seeder
         [
             'nome' => 'Pedro Carbonera', 
             'valor' => '20.99',
+            'descricao' => 'corte cabelo e barba'
         ]
        );
 

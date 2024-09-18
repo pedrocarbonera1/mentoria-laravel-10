@@ -12,6 +12,7 @@ return new class extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');  //quando o campo nao for obrigatorio utilize o nullable()
+            $table->string('descricao');
             $table->float('valor');
             $table->timestamps();
         });

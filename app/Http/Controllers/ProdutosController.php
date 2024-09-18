@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\http\Requests\FormRequestProduto;
 use App\Models\Produtos;
 use Illuminate\Http\Request;
 
@@ -22,54 +23,59 @@ class ProdutosController extends Controller
         return view('pages.paginacao', compact('findProdutos'));
     }
 
-    public function delelte(Request $request)
+    
+    public function delete(Request $request)
     {
+        $id = $request->id;
+        $buscaRegistro = Produtos::find($id);
+        $buscaRegistro->delete();
+
         
+
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+ 
+    public function cadastrarProduto(FormRequestProduto $request)
     {
+       if($request->method() == "POST"){
+        //cira os dados
+        $data = $request->all();
+        Produtos::create($data);
+
+        return redirect()->route('produto.index');
+       }
+
+       return view('pages.produtos.create');
+
        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
         //
