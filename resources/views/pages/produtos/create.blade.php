@@ -8,21 +8,21 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Nome</label>
-            <input type="text"  class="form-control @error('nome') is-invalid @enderror" name="nome">
+            <input type="text" value="{{ @old('nome') }}" class="form-control @error('nome') is-invalid @enderror" name="nome">
             @if ($errors->has('nome'))
                 <div class="invalid-feedback"> {{ $errors->first('nome') }}</div>
             @endif
         </div>
         <div class="mb-3">
             <label class="form-label">Descrição</label>
-            <input   class="form-control @error('valor') is-invalid @enderror" name="descricao">
+            <input  value="{{ @old('descricao') }}" class="form-control @error('valor') is-invalid @enderror" name="descricao">
             @if ($errors->has('descricao'))
                 <div class="invalid-feedback"> {{ $errors->first('descricao') }}</div>
             @endif
         </div>
         <div class="mb-3">
             <label class="form-label">Valor</label>
-            <input id='mascara_valor'  class="form-control @error('valor') is-invalid @enderror" name="valor">
+            <input id='mascara_valor' value="{{ @old('valor') }}" class="form-control @error('valor') is-invalid @enderror" name="valor">
             @if ($errors->has('valor'))
                 <div class="invalid-feedback"> {{ $errors->first('valor') }}</div>
             @endif
