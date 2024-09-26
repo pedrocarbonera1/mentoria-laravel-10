@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Barbearia Schuler</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background: url('pexels-zvolskiy-1570806.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffa500;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 40px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .servico {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 280px;
+        }
+
+        .servico:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.836);
+        }
+
+        .servico img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .servico h3 {
+            margin: 10px 0;
+            font-size: 1.4em;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .modal {
+            display: none; /* Oculta o modal por padrão */
+            position: fixed; /* Fixa na tela */
+            z-index: 1000; /* Garante que esteja acima de outros elementos */
+            left: 0;
+            top: 0;
+            width: 100%; /* Largura total */
+            height: 100%; /* Altura total */
+            overflow: auto; /* Permite rolagem se necessário */
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo escurecido */
+            display: flex; /* Flexbox para centralizar */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 20px; /* Margem ao redor do modal */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%; /* Largura do modal */
+            max-width: 500px; /* Largura máxima */
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select {
+            width: 100%; /* Largura total para inputs e selects */
+            padding: 10px;
+            margin-bottom: 15px; /* Espaçamento entre os campos */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0;
+            }
+
+            section {
+                padding: 20px 0;
+            }
+
+            .servicos-grid {
+                grid-template-columns: repeat(2, 1fr); /* Duas colunas em dispositivos móveis */
+            }
+
+            .servico {
+                height: auto; /* Altura automática para maior flexibilidade */
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 40px 0; /* Aumentando a compactação do cabeçalho em telas menores */
+            }
+
+            .servico img {
+                height: 120px; /* Altura da imagem ajustada para telas menores */
+            }
+
+            .servico h3 {
+                font-size: 1.1em; /* Tamanho do título ajustado */
+            }
+
+            button {
+                padding: 5px 8px; /* Diminuição do padding no botão */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Barbearia Schuler</h1>
+            <nav>
+                <ul>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="servicos" class="container">
+        <h2>Serviços</h2>
+        <div class="servicos-grid">
+            <div class="servico">
+                <img src="pexels-shkrabaanthony-4625630.jpg" alt="Corte de Cabelo">
+                <h3>Corte de Cabelo</h3>
+                <button onclick="openModal('Corte de Cabelo')">Agendar</button>
+            </div>
+            <div class="servico">
+                <img src="pexels-shkrabaanthony-4625630.jpg" alt="Barba">
+                <h3>Barba</h3>
+                <button onclick="openModal('Barba')">Agendar</button>
+            </div>
+            <div class="servico">
+                <img src="pexels-shkrabaanthony-4625630.jpg" alt="Sobrancelhas">
+                <h3>Sobrancelhas</h3>
+                <button onclick="openModal('Sobrancelhas')">Agendar</button>
+            </div>
+            <div class="servico">
+                <img src="pexels-shkrabaanthony-4625630.jpg" alt="Pacote de Serviços">
+                <h3>Pacote de Serviços</h3>
+                <button onclick="openModal('Pacote de Serviços')">Agendar</button>
+            </div>
+            <div class="servico">
+                <img src="pexels-shkrabaanthony-4625630.jpg" alt="Lavagem de Cabelo">
+                <h3>Lavagem de Cabelo</h3>
+                <button onclick="openModal('Lavagem de Cabelo')">Agendar</button>
+            </div>
+            <div class="servico">
+                <img src="pexels-shkrabaanthony-4625630.jpg" alt="Massagem Relaxante">
+                <h3>Massagem Relaxante</h3>
+                <button onclick="openModal('Massagem Relaxante')">Agendar</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="agendarModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Agendar Serviço</h2>
+            <form id="agendarForm">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+    
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+    
+                <label for="servico">Serviço:</label>
+                <input type="text" id="servico" name="servico" readonly>
+    
+                <label for="horario">Horário Disponível:</label>
+                <select id="horario" name="horario" required>
+                    <option value="">Selecione um horário</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                </select>
+    
+                <button type="submit">Confirmar Agendamento</button>
+            </form>
+        </div>
+    </div>
+    
+
+    <footer>
+        <p>&copy; 2023 Barbearia Shuler. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function openModal(servico) {
+            document.getElementById('servico').value = servico;
+            document.getElementById('agendarModal').style.display = 'flex'; // Mostra o modal apenas quando a função é chamada
+        }
+    
+        function closeModal() {
+            document.getElementById('agendarModal').style.display = 'none';
+        }
+    
+        window.onclick = function(event) {
+            var modal = document.getElementById('agendarModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+    
+        // Adiciona esta linha para garantir que o modal não seja mostrado no carregamento
+        window.onload = function() {
+            document.getElementById('agendarModal').style.display = 'none';
+        };
+    </script>
+</body>
+</html>
